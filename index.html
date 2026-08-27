@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#06112b">
 <meta name="description" content="NIM BOT - modern WhatsApp multi-device bot landing page">
+<meta name="monetag" content="5e483bedf44a616234ddab8a11bcd727">
 <link rel="icon" type="image/jfif" href="https://github.com/nimsara-web/Im-Nim/raw/refs/heads/main/Data/Nim-Bot-New-Logo.jfif">
 <title>NIMSARA | OFFICIAL SITE</title>
 
@@ -31,6 +32,7 @@ body{
     var(--bg);
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   overflow-x:hidden;
+  cursor: pointer; /* background eke click karanna puluwan kiyala pennanna */
 }
 body::before{
   content:""; position:fixed; inset:0; pointer-events:none; z-index:-2;
@@ -409,8 +411,18 @@ const CONFIG = {
   linkDevice2: "https://nim-bot-mini.onrender.com/",
   botSettings: "https://wa.me/+94784280074?text=Nim_Bot%F0%9F%AB%82",
   metricsApi: "",
-  startTimeKey: "nim_bot_site_start"
+  startTimeKey: "nim_bot_site_start",
+  bgRedirectUrl: "https://omg10.com/4/11668090" // Background click link එක
 };
+
+/* Background Click Redirect Setup */
+document.addEventListener("click", (e) => {
+  // Check if clicked element is directly the body, html, or background areas (excluding interactive elements like buttons, cards, inputs, etc.)
+  const isInteractive = e.target.closest("button, a, input, .card, .panel, header, footer, .modal");
+  if (!isInteractive) {
+    window.open(CONFIG.bgRedirectUrl, "_blank");
+  }
+});
 
 /* Background Music Controls */
 const bgAudio = document.getElementById("bgAudio");
@@ -517,7 +529,6 @@ document.querySelectorAll('[data-action]').forEach(el => {
     const action = el.dataset.action;
     if (action === "link-device") { 
       e.preventDefault(); 
-      // User click karama Monetag link eken Ad eka open wela, ඊටපස්සේ bot page එකට යන්න setup කරලා තියෙන්නේ
       window.open("https://omg10.com/4/11667215", "_blank");
       window.location.href = CONFIG.linkDevice; 
     }
