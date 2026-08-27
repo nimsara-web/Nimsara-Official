@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#06112b">
+<meta name="description" content="NIM BOT - modern WhatsApp multi-device bot landing page">
+<link rel="icon" type="image/jfif" href="https://github.com/nimsara-web/Im-Nim/raw/refs/heads/main/Data/Nim-Bot-New-Logo.jfif">
+<title>NIMSARA | OFFICIAL SITE</title>
+
+<style>
+:root {
+  --bg:#020817;
+  --panel:rgba(5,18,44,.66);
+  --panel2:rgba(7,25,56,.72);
+  --line:rgba(0,145,255,.34);
+  --blue:#0788ff;
+  --cyan:#48d9ff;
+  --text:#f5f9ff;
+  --muted:#91a7c4;
+  --green:#20f18f;
+  --shadow:0 0 32px rgba(0,130,255,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh; color:var(--text);
+  background:
+    radial-gradient(circle at 75% 26%,rgba(0,126,255,.22),transparent 28%),
+    radial-gradient(circle at 20% 65%,rgba(0,76,255,.14),transparent 30%),
+    var(--bg);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:-2;
+  background-image:
+    linear-gradient(rgba(0,130,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,130,255,.035) 1px,transparent 1px);
+  background-size:46px 46px;
+  mask-image:linear-gradient(to bottom,black,transparent 92%);
+}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(30px);opacity:.28;pointer-events:none;z-index:-1}
+.orb1{width:320px;height:320px;background:#006dff;left:-110px;top:18%;animation:drift1 11s ease-in-out infinite}
+.orb2{width:250px;height:250px;background:#00c8ff;right:-80px;top:55%;animation:drift2 14s ease-in-out infinite}
+@keyframes drift1{50%{transform:translate(90px,-60px) scale(1.15)}}
+@keyframes drift2{50%{transform:translate(-80px,60px) scale(.86)}}
+.particles span{
+  position:fixed; width:3px;height:3px;border-radius:50%;background:#2ab8ff;
+  box-shadow:0 0 14px #149cff; opacity:.6; z-index:-1;
+  animation:rise linear infinite;
+}
+@keyframes rise{from{transform:translate3d(0,105vh,0)}to{transform:translate3d(20px,-10vh,0);opacity:0}}
+.particles span:nth-child(1){left:6%;animation-duration:9s}
+.particles span:nth-child(2){left:19%;animation-duration:12s;animation-delay:-3s}
+.particles span:nth-child(3){left:33%;animation-duration:10s;animation-delay:-5s}
+.particles span:nth-child(4){left:48%;animation-duration:14s;animation-delay:-2s}
+.particles span:nth-child(5){left:63%;animation-duration:11s;animation-delay:-7s}
+.particles span:nth-child(6){left:79%;animation-duration:13s;animation-delay:-4s}
+.particles span:nth-child(7){left:92%;animation-duration:9s;animation-delay:-6s}
+
+.container{width:min(1160px,92%);margin:auto}
+.nav{
+  position:sticky; top:14px; z-index:50;
+  margin:18px auto 0; padding:12px 14px;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  background:rgba(2,10,25,.73);backdrop-filter:blur(18px);
+  border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:max-content}
+.brand-icon{
+  width:42px;height:42px;border-radius:14px;display:grid;place-items:center;
+  border:1px solid #2ba9ff;background:#06204a;font-size:22px;
+  box-shadow:0 0 20px rgba(0,136,255,.35); overflow:hidden;
+}
+.brand-icon img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.brand strong{font-size:20px;letter-spacing:.8px}
+.brand small{display:block;color:#78a7cf;font-size:10px;letter-spacing:1.7px;margin-top:2px}
+.navlinks{display:flex;gap:7px;align-items:center}
+.navlinks a{
+  color:#c9d8ed;text-decoration:none;padding:10px 13px;border-radius:10px;
+  font-size:13px;transition:.25s
+}
+.navlinks a:hover,.navlinks a.active{color:white;background:#0b4a92;box-shadow:inset 0 -2px #24aaff}
+.quick{
+  border:1px solid #149eff;background:linear-gradient(135deg,#0b75ee,#0752b9);
+  color:white;border-radius:13px;padding:11px 15px;cursor:pointer;font-weight:700;
+  box-shadow:0 8px 22px rgba(0,110,255,.22)
+}
+.menu-toggle{display:none;background:none;border:1px solid var(--line);color:white;border-radius:10px;padding:10px 12px;cursor:pointer}
+
+.hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:30px;padding:74px 0 30px}
+.kicker{color:#2aa8ff;font-weight:800;letter-spacing:2.4px;font-size:14px}
+h1{font-size:clamp(46px,8vw,92px);line-height:.95;margin:15px 0 18px;letter-spacing:3px;
+    background:linear-gradient(90deg,#fff,#57c7ff 48%,#8fe2ff);-webkit-background-clip:text;color:transparent;
+    text-shadow:0 0 30px rgba(22,147,255,.25)}
+.hero p{color:#b5c7dc;font-size:18px;line-height:1.65;max-width:600px}
+.creator{margin-top:12px;color:#7fa2c4;font-size:14px} .creator b{color:white}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+.btn{
+  text-decoration:none;color:white;display:inline-flex;align-items:center;gap:8px;
+  padding:13px 18px;border-radius:13px;border:1px solid #117dd2;background:#061b39;
+  transition:.25s;cursor:pointer
+}
+.btn.primary{background:linear-gradient(135deg,#1597ff,#0757c8);border-color:#34b9ff;box-shadow:0 10px 30px rgba(0,111,255,.28)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 26px rgba(0,145,255,.32)}
+.status{display:flex;align-items:center;gap:10px;margin-top:24px;color:#b7d8ca}
+.dot{width:10px;height:10px;background:var(--green);border-radius:50%;box-shadow:0 0 16px var(--green);animation:pulse 1.7s infinite}
+@keyframes pulse{50%{transform:scale(.65);opacity:.55}}
+.status strong{color:white}
+.hero-art{position:relative;min-height:560px;display:grid;place-items:center}
+.hero-art::before{
+  content:""; position:absolute;width:86%;aspect-ratio:1;border-radius:50%;
+  background:conic-gradient(from 0deg,transparent 0 17%,#0b93ff 22%,transparent 30% 48%,#32d3ff 52%,transparent 65% 100%);
+  filter:blur(10px);opacity:.65;animation:spin 10s linear infinite
+}
+.hero-art::after{
+  content:"";position:absolute;width:72%;aspect-ratio:1;border-radius:50%;
+  border:1px solid #087fff55;box-shadow:0 0 90px #087fff44,inset 0 0 70px #087fff22;
+  animation:breathe 3.2s ease-in-out infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{50%{transform:scale(1.035)}}
+.hero-img{
+  width:min(560px,92%);position:relative;z-index:2;border-radius:24px;
+  filter:drop-shadow(0 25px 55px rgba(0,126,255,.32));
+  animation:float 5s ease-in-out infinite
+}
+@keyframes float{50%{transform:translateY(-10px)}}
+.creator-card{
+  position:absolute;right:4%;bottom:40px;z-index:4;padding:16px 20px;border-radius:16px;
+  background:rgba(4,16,38,.82);backdrop-filter:blur(14px);border:1px solid #168eff66;
+  box-shadow:0 14px 38px rgba(0,0,0,.28)
+}
+.creator-card span{display:block;color:#8da7c4;font-size:12px} .creator-card b{font-size:22px;color:#39b4ff}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:26px 0}
+.card{
+  background:linear-gradient(180deg,rgba(7,28,61,.74),rgba(4,17,38,.70));
+  border:1px solid #0e6fbd66;border-radius:20px;padding:24px;backdrop-filter:blur(14px);
+  box-shadow:0 15px 40px rgba(0,0,0,.14);transition:.28s
+}
+.card:hover{transform:translateY(-7px);border-color:#20a6ff;box-shadow:0 20px 48px rgba(0,103,255,.16)}
+.icon{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:26px;
+  background:#062b61;border:1px solid #168fff;margin-bottom:16px;box-shadow:0 0 20px rgba(0,132,255,.22)}
+.card h3{font-size:17px;margin-bottom:8px} .card p{color:#91a7c4;line-height:1.65;font-size:14px}
+
+.section{padding:55px 0 15px}
+.section-title{font-size:30px;margin-bottom:8px} .section-sub{color:#8099b7;max-width:700px;line-height:1.6}
+.panel{
+  margin-top:20px;border:1px solid #126eaf66;border-radius:20px;background:rgba(4,17,39,.72);
+  backdrop-filter:blur(14px);overflow:hidden
+}
+.stats{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:24px;border-right:1px solid #116aa844} .stat:last-child{border-right:0}
+.stat small{display:block;color:#7895b5;text-transform:uppercase;letter-spacing:1.2px;font-size:11px}
+.stat strong{display:block;font-size:28px;margin:7px 0 2px;color:white} .stat span{color:#8ba4c0;font-size:12px}
+
+.command-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.command-search{display:flex;gap:10px;margin:20px}
+.command-search input{
+  flex:1;background:#06152f;border:1px solid #167fc6aa;border-radius:12px;color:white;padding:13px 14px;outline:none
+}
+.command-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:0 20px 20px}
+.command{
+  padding:14px;border:1px solid #0b5d9e66;border-radius:13px;background:#04142d;
+  display:flex;justify-content:space-between;gap:12px
+}
+.command code{color:#55c7ff} .command small{color:#7893b2}
+
+.livebox{padding:22px;min-height:185px;display:flex;flex-direction:column;justify-content:center}
+.live-row{display:flex;justify-content:space-between;align-items:center;margin:8px 0}
+.live-number{font-size:42px;font-weight:800;color:#43bbff;text-shadow:0 0 25px #168fff55}
+.bar{height:9px;border-radius:20px;background:#06172e;overflow:hidden;border:1px solid #0c528a}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#0a71ef,#43dbff);border-radius:inherit;transition:1s}
+
+.footer{padding:50px 0 35px;color:#7189a8;text-align:center;font-size:13px}
+.footer b{color:#35b4ff}
+.small-note{font-size:11px;color:#617995;margin-top:7px}
+
+/* Music Player Floating Button Styles */
+.music-float-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1000;
+  background: rgba(4, 18, 44, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid #168fff88;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 130, 255, 0.3);
+  transition: .3s;
+  font-size: 13px;
+  font-weight: 600;
+}
+.music-float-btn:hover {
+  transform: scale(1.05);
+  border-color: #48d9ff;
+  box-shadow: 0 0 20px rgba(72, 217, 255, 0.4);
+}
+.music-icon {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #0b75ee, #0752b9);
+  border-radius: 50%;
+  font-size: 12px;
+  animation: musicPulse 1.5s infinite;
+}
+@keyframes musicPulse {
+  0% { box-shadow: 0 0 0 0 rgba(7, 136, 255, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(7, 136, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(7, 136, 255, 0); }
+}
+
+.toast{
+  position:fixed;right:18px;bottom:18px;z-index:100;transform:translateY(20px);opacity:0;
+  background:#061b39;border:1px solid #1e8fe7;color:white;padding:13px 16px;border-radius:12px;
+  transition:.25s;box-shadow:0 15px 35px rgba(0,0,0,.3)
+}
+.toast.show{transform:translateY(0);opacity:1}
+
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,5,16,.75);backdrop-filter:blur(7px);z-index:90;place-items:center}
+.modal-backdrop.open{display:grid}
+.modal{width:min(520px,92%);padding:25px;border-radius:20px;background:#04122a;border:1px solid #168fff77;box-shadow:0 25px 80px rgba(0,0,0,.5)}
+.modal h3{margin-bottom:10px} .modal p{color:#8fa6c1;line-height:1.6}
+.close{float:right;background:none;border:0;color:#93afd0;font-size:24px;cursor:pointer}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:50px}
+  .hero-art{order:-1;min-height:430px}
+  .grid3{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid #116aa844}
+  .command-wrap{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .nav{top:8px}
+  .menu-toggle{display:block}
+  .navlinks{display:none;position:absolute;left:0;right:0;top:66px;padding:10px;background:rgba(2,10,25,.96);border:1px solid var(--line);border-radius:14px;flex-direction:column}
+  .navlinks.open{display:flex}
+  .navlinks a{width:100%;text-align:center}
+  .quick{display:none}
+  .hero-art{min-height:360px}
+  .creator-card{right:5%;bottom:10px}
+  h1{font-size:55px}
+  .stats{grid-template-columns:1fr}
+  .stat{border-right:0;border-bottom:1px solid #116aa844!important}
+  .stat:last-child{border-bottom:0!important}
+  .command-list{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+<div class="bg-orb orb1"></div><div class="bg-orb orb2"></div>
+<div class="particles"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+<!-- Background Audio Element -->
+<audio id="bgAudio" loop>
+  <source src="https://github.com/nimsara-web/Im-Nim/raw/refs/heads/main/Data/MASHUQ%20HAQUE%20-%20AIRTEL%20PHONK%20%20A.%20R.%20RAHMAN%20(PHONK).mp3" type="audio/mpeg">
+</audio>
+
+<!-- Floating Music Toggle Button -->
+<button class="music-float-btn" id="musicToggleBtn" title="Play/Pause Music">
+  <div class="music-icon" id="musicIcon">🎵</div>
+  <span id="musicText">PHONK: OFF</span>
+</button>
+
+<header class="nav container">
+  <div class="brand">
+    <div class="brand-icon">
+      <img src="https://github.com/nimsara-web/Im-Nim/raw/refs/heads/main/Data/Nim-Bot-New-Logo.jfif" alt="NIM BOT Logo">
+    </div>
+    <div><strong>NIM MINI BOT</strong><small>WHATSAPP MULTI-DEVICE</small></div>
+  </div>
+  <button class="menu-toggle" id="menuToggle">☰</button>
+  <nav class="navlinks" id="navLinks">
+    <a class="active" href="#home">HOME</a>
+    <a href="#features">FEATURES</a>
+    <a href="#commands">COMMANDS</a>
+    <a href="#status">STATUS</a>
+    <a href="#support">SUPPORT</a>
+  </nav>
+  <button class="quick" id="quickBtn">⚡ QUICK MENU</button>
+</header>
+
+<main id="home" class="container">
+  <section class="hero">
+    <div>
+      <div class="kicker">NEXT GENERATION WHATSAPP BOT</div>
+      <h1>NIM MINI BOT</h1>
+      <p>Powerful, fast and secure WhatsApp multi-device automation with a modern control experience.</p>
+      <div class="creator">Created with 💙 by <b>Nimsara</b></div>
+
+      <div class="actions">
+        <!-- Monetag Link 1 -->
+        <a class="btn primary" href="https://omg10.com/4/11667215" target="_blank" data-action="link-device">🔗 LINK DEVICE</a>
+        <!-- Monetag Link 2 -->
+        <a class="btn" href="https://omg10.com/4/11667944" target="_blank" data-action="link-device-2">🔗 LINK DEVICE 2</a>
+      </div>
+
+      <div class="status">
+        <span class="dot"></span>
+        <span>NIM BOT SERVER</span><span style="opacity:.35">|</span>
+        <strong id="serverStatus">ONLINE</strong>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <img class="hero-img" alt="NIM BOT mascot" src="https://github.com/nimsara-web/Im-Nim/raw/refs/heads/main/Data/Nim-Bot-New-Logo.jfif">
+      <div class="creator-card"><span>Created by</span><b>Nimsara</b></div>
+    </div>
+  </section>
+
+  <section id="features" class="grid3">
+    <article class="card"><div class="icon">⚡</div><h3>FAST & RELIABLE</h3><p>Responsive UI, lightweight animations and a clean experience for every device.</p></article>
+    <article class="card"><div class="icon">🤖</div><h3>SMART AUTOMATION</h3><p>Command-focused layout ready for auto-replies, bot tools and future integrations.</p></article>
+    <article class="card"><div class="icon">🛡️</div><h3>SECURE & SAFE</h3><p>Buttons are wired as actions, and API-ready hooks make backend integration simple.</p></article>
+  </section>
+
+  <section id="status" class="section">
+    <h2 class="section-title">LIVE BOT STATUS</h2>
+    <p class="section-sub">Live dashboard values.</p>
+    <div class="panel stats">
+      <div class="stat"><small>VISITORS</small><strong id="visitorCount">1</strong><span>Unique browser visits</span></div>
+      <div class="stat"><small>SITE UPTIME</small><strong id="siteUptime">00:00:00</strong><span>Time since this page was opened</span></div>
+      <div class="stat"><small>SERVERS</small><strong id="serverCount">3</strong><span>Configured bot servers</span></div>
+      <div class="stat"><small>VERSION</small><strong>v3.0</strong><span>Latest website build</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">REAL-TIME VIEWERS</h2>
+    <p class="section-sub">Global visitor count.</p>
+    <div class="panel livebox">
+      <div class="live-row"><span>Currently viewing</span><div class="live-number" id="liveViewers">1</div></div>
+      <div class="bar"><i id="viewerBar"></i></div>
+      <div class="small-note" id="viewerNote">• refresh this page to simulate activity</div>
+    </div>
+  </section>
+
+  <section id="commands" class="section">
+    <h2 class="section-title">COMMAND CENTER</h2>
+    <p class="section-sub">Search your bot commands. The list is ready for dynamic API data later.</p>
+    <div class="panel command-wrap">
+      <div>
+        <div class="command-search">
+          <input id="commandSearch" type="search" placeholder="Search commands…">
+        </div>
+        <div class="command-list" id="commandList">
+          <div class="command" data-key="menu"><code>.menu</code><small>Show menu</small></div>
+          <div class="command" data-key="ping"><code>.ping</code><small>Check latency</small></div>
+          <div class="command" data-key="play"><code>.vv</code><small>One View Photo Read</small></div>
+          <div class="command" data-key="download"><code>.Save</code><small>Another Status Save</small></div>
+          <div class="command" data-key="sticker"><code>.mode</code><small>Bot Private,Public,Only Group,Inbox</small></div>
+          <div class="command" data-key="settings"><code>.settings</code><small>Bot settings</small></div>
+        </div>
+      </div>
+      <div class="livebox">
+        <div class="live-row"><span>SERVER RESPONSE</span><strong id="latency">42 ms</strong></div>
+        <div class="live-row"><span>DATABASE</span><strong style="color:#20f18f">CONNECTED</strong></div>
+        <div class="live-row"><span>API</span><strong style="color:#20f18f">READY</strong></div>
+        <button class="btn primary" id="refreshStatus">↻ REFRESH STATUS</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="support" class="section">
+    <h2 class="section-title">SUPPORT & CONNECTION</h2>
+    <p class="section-sub">Contact Support Team.</p>
+    <div class="grid3">
+      <button class="card" style="text-align:left;color:inherit;cursor:pointer" data-action="settings"><div class="icon">🪀</div><h3>Contact Nimsara</h3><p>If you have a question, send a WhatsApp message and ask.</p></button>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  © <span id="year">2026</span> <b>NIM BOT</b>. All Rights Reserved.<br>
+  Created with 💙 by <b>Nimsara</b>.
+  <div class="small-note">Nim Creator.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <button class="close" id="modalClose">×</button>
+    <h3 id="modalTitle">NIM BOT</h3>
+    <p id="modalText"></p>
+    <div class="actions" style="margin-top:18px"><button class="btn primary" id="modalAction">OK</button></div>
+  </div>
+</div>
+
+<script>
+/* =========================
+   NIM BOT CONFIG
+   ========================= */
+const CONFIG = {
+  linkDevice: "https://nim-bot-mini.onrender.com/",
+  linkDevice2: "https://nim-bot-mini.onrender.com/",
+  botSettings: "https://wa.me/+94784280074?text=Nim_Bot%F0%9F%AB%82",
+  metricsApi: "",
+  startTimeKey: "nim_bot_site_start"
+};
+
+/* Background Music Controls */
+const bgAudio = document.getElementById("bgAudio");
+const musicToggleBtn = document.getElementById("musicToggleBtn");
+const musicText = document.getElementById("musicText");
+const musicIcon = document.getElementById("musicIcon");
+
+let isPlaying = false;
+
+window.addEventListener("DOMContentLoaded", () => {
+  bgAudio.volume = 0.5;
+  bgAudio.play().then(() => {
+    isPlaying = true;
+    musicText.textContent = "PHONK: ON";
+    musicIcon.style.animationPlayState = "running";
+  }).catch(() => {
+    isPlaying = false;
+    musicText.textContent = "PHONK: OFF";
+    musicIcon.style.animationPlayState = "paused";
+  });
+});
+
+musicToggleBtn.addEventListener("click", () => {
+  if (isPlaying) {
+    bgAudio.pause();
+    isPlaying = false;
+    musicText.textContent = "PHONK: OFF";
+    musicIcon.style.animationPlayState = "paused";
+  } else {
+    bgAudio.play();
+    isPlaying = true;
+    musicText.textContent = "PHONK: ON";
+    musicIcon.style.animationPlayState = "running";
+  }
+});
+
+/* Uptime timer */
+const storedStart = Number(localStorage.getItem(CONFIG.startTimeKey));
+const pageStart = storedStart > 0 ? storedStart : Date.now();
+if (!storedStart) localStorage.setItem(CONFIG.startTimeKey, String(pageStart));
+
+function formatDuration(sec) {
+  sec = Math.max(0, Math.floor(sec));
+  const d = Math.floor(sec/86400);
+  sec %= 86400;
+  const h = Math.floor(sec/3600);
+  sec %= 3600;
+  const m = Math.floor(sec/60);
+  const s = sec % 60;
+  return (d ? String(d).padStart(2,"0") + ":" : "") +
+         [h,m,s].map(n => String(n).padStart(2,"0")).join(":");
+}
+function updateUptime() {
+  document.getElementById("siteUptime").textContent = formatDuration((Date.now()-pageStart)/1000);
+}
+setInterval(updateUptime,1000); updateUptime();
+
+/* Local demo visitor count */
+const visitorKey = "nim_bot_demo_visits";
+const previousVisits = Number(localStorage.getItem(visitorKey) || 0);
+localStorage.setItem(visitorKey, String(previousVisits + 1));
+document.getElementById("visitorCount").textContent = (previousVisits + 1).toLocaleString();
+
+/* Local demo viewers */
+let baseViewers = Math.max(1, Math.min(25, Number(sessionStorage.getItem("nim_bot_viewers") || Math.floor(Math.random()*6)+2)));
+function updateLocalViewers() {
+  const jitter = Math.floor(Math.random()*5)-2;
+  baseViewers = Math.max(1, Math.min(50, baseViewers + jitter));
+  sessionStorage.setItem("nim_bot_viewers", String(baseViewers));
+  document.getElementById("liveViewers").textContent = baseViewers;
+  document.getElementById("viewerBar").style.width = Math.min(100, baseViewers*4) + "%";
+}
+updateLocalViewers();
+setInterval(updateLocalViewers, 5000);
+
+/* Actions / modal */
+const toast = document.getElementById("toast");
+let toastTimer;
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove("show"),2600);
+}
+const backdrop = document.getElementById("modalBackdrop");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const modalAction = document.getElementById("modalAction");
+
+function openModal(title, text, actionUrl) {
+  modalTitle.textContent = title;
+  modalText.textContent = text;
+  modalAction.onclick = () => {
+    if (actionUrl && actionUrl !== "#") window.location.href = actionUrl;
+    else { showToast("Set the URL in CONFIG first."); backdrop.classList.remove("open"); }
+  };
+  backdrop.classList.add("open");
+}
+document.getElementById("modalClose").onclick = () => backdrop.classList.remove("open");
+backdrop.addEventListener("click", e => { if (e.target === backdrop) backdrop.classList.remove("open"); });
+
+document.querySelectorAll('[data-action]').forEach(el => {
+  el.addEventListener("click", e => {
+    const action = el.dataset.action;
+    if (action === "link-device") { 
+      e.preventDefault(); 
+      // User click karama Monetag link eken Ad eka open wela, ඊටපස්සේ bot page එකට යන්න setup කරලා තියෙන්නේ
+      window.open("https://omg10.com/4/11667215", "_blank");
+      window.location.href = CONFIG.linkDevice; 
+    }
+    if (action === "link-device-2") { 
+      e.preventDefault(); 
+      window.open("https://omg10.com/4/11667944", "_blank");
+      window.location.href = CONFIG.linkDevice2; 
+    }
+    if (action === "settings") { e.preventDefault(); openModal("BOT SETTINGS","Contact Nimsara.", CONFIG.botSettings); }
+  });
+});
+
+/* Quick menu */
+document.getElementById("quickBtn").onclick = () =>
+  openModal("NIM BOT QUICK MENU","Choose a real endpoint in CONFIG to activate your device linking and settings buttons.", CONFIG.botSettings);
+
+/* Command filter */
+document.getElementById("commandSearch").addEventListener("input", e => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll(".command").forEach(card => {
+    card.style.display = card.dataset.key.includes(q) || card.textContent.toLowerCase().includes(q) ? "flex" : "none";
+  });
+});
+
+/* Refresh status */
+document.getElementById("refreshStatus").onclick = () => {
+  const ms = Math.floor(24 + Math.random()*70);
+  document.getElementById("latency").textContent = ms + " ms";
+  showToast("Status refreshed");
+};
+
+/* Mobile nav */
+document.getElementById("menuToggle").onclick = () => document.getElementById("navLinks").classList.toggle("open");
+document.querySelectorAll(".navlinks a").forEach(a => a.addEventListener("click", () => document.getElementById("navLinks").classList.remove("open")));
+
+/* Active nav link */
+const sections = ["home","features","commands","status","support"].map(id => document.getElementById(id)).filter(Boolean);
+const navAnchors = [...document.querySelectorAll(".navlinks a")];
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navAnchors.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+    }
+  });
+}, {rootMargin:"-30% 0px -55% 0px", threshold:0});
+sections.forEach(s => observer.observe(s));
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
